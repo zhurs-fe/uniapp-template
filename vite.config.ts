@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv, UserConfig } from 'vite'
+import requireTransform from 'vite-plugin-require-transform'
 import uni from '@dcloudio/vite-plugin-uni'
 import * as path from 'path'
 
@@ -18,7 +19,16 @@ export default defineConfig(({ command, mode }) => {
       },
     },
 
-    plugins: [uni()],
+    plugins: [
+      uni(),
+      // @ts-ignore
+      requireTransform({
+        fileRegex: /.ts$|.js$|.vue$/,
+      }),
+    ],
+    server: {
+      port: 8080,
+    },
   }
 
   if (command === 'serve') {

@@ -1,7 +1,7 @@
 import { createSSRApp } from 'vue'
+import uView from 'vk-uview-ui'
 import App from './App.vue'
 import pinia from './store'
-import uView from 'vk-uview-ui'
 import initApp from './init'
 
 export function createApp() {

@@ -17,6 +17,10 @@ const request = axios.create({
 // request请求拦截器
 request.interceptors.request.use(
   (config: any) => {
+    const reg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/
+    if (reg.test(config.url)) {
+      config.baseURL = ''
+    }
     config.headers['Authorization'] = uni.getStorageSync(TOKEN_KEY)
 
     return config
